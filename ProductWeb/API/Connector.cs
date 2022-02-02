@@ -24,7 +24,7 @@ namespace ProductWeb.API
 
     public async Task<List<Product>> GetAllAsync()
     {
-      HttpResponseMessage res = await _client.GetAsync("/product/getall");
+      using HttpResponseMessage res = await _client.GetAsync("/product/getall");
       string content = await res.Content.ReadAsStringAsync();
 
       if (res.IsSuccessStatusCode)
@@ -37,6 +37,52 @@ namespace ProductWeb.API
       }
     }
 
+    public async Task<Product> GetByIdAsync(int id)
+    {
+      using HttpResponseMessage res = await _client.GetAsync($"/product/getbyid/{id}");
+      string content = await res.Content.ReadAsStringAsync();
 
+      if (res.IsSuccessStatusCode)
+      {
+        return JObject.Parse(content).ToObject<Product>();
+      }
+      else
+      {
+        throw new Exception(content);
+      }
+    }
+
+    public async Task CreateAsync(Product product)
+    {
+      using HttpResponseMessage res = await _client.PostAsJsonAsync("/product/create", product);
+      string content = await res.Content.ReadAsStringAsync();
+
+      if (!res.IsSuccessStatusCode)
+      {
+        throw new Exception(content);
+      }
+    }
+
+    public async Task UpdateAsync(Product product)
+    {
+      using HttpResponseMessage res = await _client.PutAsJsonAsync("/product/update", product);
+      string content = await res.Content.ReadAsStringAsync();
+
+      if (!res.IsSuccessStatusCode)
+      {
+        throw new Exception(content);
+      }
+    }
+
+    public async Task DeleteByIdAsync(int id)
+    {
+      using HttpResponseMessage res = await _client.DeleteAsync($"/product/deletebyid/{id}");
+      string content = await res.Content.ReadAsStringAsync();
+
+      if (!res.IsSuccessStatusCode)
+      {
+        throw new Exception(content);
+      }
+    }
   }
 }
