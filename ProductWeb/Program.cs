@@ -1,7 +1,11 @@
+using ProductWeb.API;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddScoped<IConnector, Connector>();
 
 var app = builder.Build();
 
