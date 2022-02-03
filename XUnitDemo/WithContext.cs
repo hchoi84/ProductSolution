@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using FluentAssertions;
+using OpenQA.Selenium;
 using System.Collections.Generic;
 using Xunit;
 using Xunit.Abstractions;
@@ -20,12 +21,16 @@ namespace XUnitDemo
       _webDriverFixture = webDriverFixture;
     }
 
-    //[Fact]
-    //public void ClassFixtureTestFact()
-    //{
-    //  _testOutputHelper.WriteLine("First test");
-    //  _webDriverFixture.ChromeDriver.Navigate().GoToUrl("http://eaapp.somee.com");
-    //}
+    [Fact]
+    public void ClassFixtureTestFact()
+    {
+      _testOutputHelper.WriteLine("First test");
+      _webDriverFixture.ChromeDriver.Navigate().GoToUrl("http://eaapp.somee.com");
+
+      //using Fluent Assertion nuget (Section14 - 135) Should() is part of FluentAssertion nuget package
+      var anchor = _webDriverFixture.ChromeDriver.FindElements(By.TagName("a"));
+      anchor.Should().HaveCountGreaterThan(2);
+    }
 
     [Theory]
     [InlineData("admin", "password")]
@@ -42,9 +47,12 @@ namespace XUnitDemo
       driver.FindElement(By.Id("Password")).SendKeys(password);
       //driver.FindElement(By.CssSelector(".btn-default")).Click();
 
-      //for checking exceptions
+      ////for checking exceptions (Section14 - 134)
       var exception = Assert.Throws<NoSuchElementException>(() => driver.FindElement(By.CssSelector(".btn-defaults")).Click());
-      Assert.Contains("no such element: Unable", exception.Message);
+      //Assert.Contains("no such element: Unable", exception.Message);
+
+      //using Fluent Assertion nuget (Section14 - 135)
+      exception.Message.Should().Contain("no such element: Unable");
 
       _testOutputHelper.WriteLine("Test Completed");
     }
