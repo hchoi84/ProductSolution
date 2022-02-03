@@ -7,13 +7,13 @@ using Xunit.Abstractions;
 
 namespace XUnitDemo
 {
-  public class WithoutContext
+  public class AWithoutContext
   {
     // for printing to the Test Detail Summary
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly ChromeDriver _chromeDriver;
 
-    public WithoutContext(ITestOutputHelper testOutputHelper)
+    public AWithoutContext(ITestOutputHelper testOutputHelper)
     {
       _testOutputHelper = testOutputHelper;
       //sets up the appropriate driver version for the referenced browser

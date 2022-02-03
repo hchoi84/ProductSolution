@@ -6,12 +6,12 @@ using Xunit.Abstractions;
 namespace XUnitDemo
 {
   //[Collection("Sequence")]
-  public class ParallelTest : IClassFixture<WebDriverFixture>
+  public class BParallelTest : IClassFixture<WebDriverFixture>
   {
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly WebDriverFixture _webDriverFixture;
 
-    public ParallelTest(ITestOutputHelper testOutputHelper, WebDriverFixture webDriverFixture)
+    public BParallelTest(ITestOutputHelper testOutputHelper, WebDriverFixture webDriverFixture)
     {
       _testOutputHelper = testOutputHelper;
       _webDriverFixture = webDriverFixture;

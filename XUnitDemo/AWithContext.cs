@@ -9,13 +9,13 @@ namespace XUnitDemo
   //this attribute along with any given name is used throughout classes where we want to run it one by one. Otherwise, all the classes will run in parallel by default with the use of IClassFixture
   //[Collection("Sequence")]
   //to run the test in cli, use "dotnet test" from the project folder directory
-  public class WithContext : IClassFixture<WebDriverFixture>
+  public class AWithContext : IClassFixture<WebDriverFixture>
   {
     // for printing to the Test Detail Summary
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly WebDriverFixture _webDriverFixture;
 
-    public WithContext(ITestOutputHelper testOutputHelper, WebDriverFixture webDriverFixture)
+    public AWithContext(ITestOutputHelper testOutputHelper, WebDriverFixture webDriverFixture)
     {
       _testOutputHelper = testOutputHelper;
       _webDriverFixture = webDriverFixture;
