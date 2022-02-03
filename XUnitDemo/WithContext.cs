@@ -20,12 +20,12 @@ namespace XUnitDemo
       _webDriverFixture = webDriverFixture;
     }
 
-    [Fact]
-    public void ClassFixtureTestFact()
-    {
-      _testOutputHelper.WriteLine("First test");
-      _webDriverFixture.ChromeDriver.Navigate().GoToUrl("http://eaapp.somee.com");
-    }
+    //[Fact]
+    //public void ClassFixtureTestFact()
+    //{
+    //  _testOutputHelper.WriteLine("First test");
+    //  _webDriverFixture.ChromeDriver.Navigate().GoToUrl("http://eaapp.somee.com");
+    //}
 
     [Theory]
     [InlineData("admin", "password")]
@@ -41,6 +41,10 @@ namespace XUnitDemo
       driver.FindElement(By.Id("UserName")).SendKeys(username);
       driver.FindElement(By.Id("Password")).SendKeys(password);
       //driver.FindElement(By.CssSelector(".btn-default")).Click();
+
+      //for checking exceptions
+      var exception = Assert.Throws<NoSuchElementException>(() => driver.FindElement(By.CssSelector(".btn-defaults")).Click());
+      Assert.Contains("no such element: Unable", exception.Message);
 
       _testOutputHelper.WriteLine("Test Completed");
     }
