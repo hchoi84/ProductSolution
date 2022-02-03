@@ -10,6 +10,6 @@ namespace ProductWeb.Models
     public string Description { get; set; } = String.Empty;
     public int Price { get; set; }
 
-    public ProductType ProductType { get; set; }
+    public ProductType? ProductType { get; set; }
   }
 }
