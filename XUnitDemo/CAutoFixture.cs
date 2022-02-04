@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using System.Net.Mail;
 using Xunit;
 using Xunit.Abstractions;
+using XUnitDemo.Extensions;
 
 namespace XUnitDemo
 {
@@ -29,7 +30,7 @@ namespace XUnitDemo
       var pwd = new Fixture().Create<string>();
       var cpwd = new Fixture().Create<string>();
       var mailAddress = new Fixture().Create<MailAddress>();
-      
+
       driver.FindElement(By.LinkText("Register")).Click();
       driver.FindElement(By.Id("UserName")).SendKeys(un);
       driver.FindElement(By.Id("Password")).SendKeys(pwd);
@@ -60,7 +61,9 @@ namespace XUnitDemo
     }
 
     //14-138 The AutoData calls AutoFixture. Replaces the logic of AutoFixture with the AutoData attribute.
-    [Theory, AutoData]
+    //[Theory, AutoData]
+    //14-139 customize AutoData
+    [Theory, RegisterUserAttribute]
     public void AutoDataTest(RegisterUserModel user)
     {
       var driver = _webDriverFixture.ChromeDriver;
