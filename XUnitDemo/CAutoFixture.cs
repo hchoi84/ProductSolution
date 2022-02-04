@@ -1,4 +1,5 @@
 ﻿using AutoFixture;
+using AutoFixture.Xunit2;
 using OpenQA.Selenium;
 using System.Net.Mail;
 using Xunit;
@@ -48,6 +49,22 @@ namespace XUnitDemo
       //var user = new Fixture().Create<RegisterUserModel>();
       //var user = new Fixture().Build<RegisterUserModel>().Without(x => x.Email).Create();
       var user = new Fixture().Build<RegisterUserModel>().With(x => x.Email, "abc@ea.com").Create();
+
+      driver.FindElement(By.LinkText("Register")).Click();
+      driver.FindElement(By.Id("UserName")).SendKeys(user.Name);
+      driver.FindElement(By.Id("Password")).SendKeys(user.Password);
+      driver.FindElement(By.Id("ConfirmPassword")).SendKeys(user.CPassword);
+      driver.FindElement(By.Id("Email")).SendKeys(user.Email);
+
+      _testOutputHelper.WriteLine("Test Completed");
+    }
+
+    //14-138 The AutoData calls AutoFixture. Replaces the logic of AutoFixture with the AutoData attribute.
+    [Theory, AutoData]
+    public void AutoDataTest(RegisterUserModel user)
+    {
+      var driver = _webDriverFixture.ChromeDriver;
+      driver.Navigate().GoToUrl("http://eaapp.somee.com");
 
       driver.FindElement(By.LinkText("Register")).Click();
       driver.FindElement(By.Id("UserName")).SendKeys(user.Name);
