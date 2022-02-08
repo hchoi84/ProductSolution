@@ -6,7 +6,7 @@ using WebDriverManager.DriverConfigs.Impl;
 
 namespace SeleniumXUnitBasic.Driver
 {
-  public class BrowserDriver
+  public class BrowserDriver : IBrowserDriver
   {
     public IWebDriver GetChromeDriver()
     {

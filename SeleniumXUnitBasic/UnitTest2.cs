@@ -6,13 +6,13 @@ using Xunit;
 
 namespace SeleniumXUnitBasic
 {
-  public class UnitTest1 : IDisposable
+  public class UnitTest2 : IDisposable
   {
     private readonly IWebDriver _driver;
 
-    public UnitTest1()
+    public UnitTest2()
     {
-      DriverFixture driverFixture = new(BrowserType.Chrome);
+      DriverFixture driverFixture = new(BrowserType.Edge);
       _driver = driverFixture.Driver;
       _driver.Navigate().GoToUrl(new Uri("https://localhost:7207/"));
     }
@@ -23,22 +23,22 @@ namespace SeleniumXUnitBasic
     }
 
     [Fact]
-    public void Test1()
+    public void Test4()
     {
       _driver.FindElement(By.LinkText("Product")).Click();
       _driver.FindElement(By.LinkText("Create")).Click();
 
-      _driver.FindElement(By.Id("Product_Name")).SendKeys("Table");
-      _driver.FindElement(By.Id("Product_Description")).SendKeys("Standing Table");
+      _driver.FindElement(By.Id("Product_Name")).SendKeys("Motherboard");
+      _driver.FindElement(By.Id("Product_Description")).SendKeys("Computer board");
       _driver.FindElement(By.Id("Product_Price")).Clear();
       _driver.FindElement(By.Id("Product_Price")).SendKeys("100");
       SelectElement? select = new(_driver.FindElement(By.Id("Product_ProductType")));
-      select.SelectByValue("2");
+      select.SelectByValue("1");
       _driver.FindElement(By.Id("Create")).Submit();
     }
 
     [Fact]
-    public void Test2()
+    public void Test5()
     {
       _driver.FindElement(By.LinkText("Product")).Click();
       _driver.FindElement(By.LinkText("Create")).Click();
@@ -49,21 +49,6 @@ namespace SeleniumXUnitBasic
       _driver.FindElement(By.Id("Product_Price")).SendKeys("100");
       SelectElement? select = new(_driver.FindElement(By.Id("Product_ProductType")));
       select.SelectByValue("2");
-      _driver.FindElement(By.Id("Create")).Submit();
-    }
-
-    [Fact]
-    public void Test3()
-    {
-      _driver.FindElement(By.LinkText("Product")).Click();
-      _driver.FindElement(By.LinkText("Create")).Click();
-
-      _driver.FindElement(By.Id("Product_Name")).SendKeys("Chair");
-      _driver.FindElement(By.Id("Product_Description")).SendKeys("Sitting Chair");
-      _driver.FindElement(By.Id("Product_Price")).Clear();
-      _driver.FindElement(By.Id("Product_Price")).SendKeys("100");
-      SelectElement? select = new(_driver.FindElement(By.Id("Product_ProductType")));
-      select.SelectByValue("3");
       _driver.FindElement(By.Id("Create")).Submit();
     }
   }
