@@ -1,3 +1,4 @@
+using Autofac;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumXUnitBasic.Driver;
@@ -9,10 +10,15 @@ namespace SeleniumXUnitBasic
   public class UnitTest2 : IDisposable
   {
     private readonly IWebDriver _driver;
+    private readonly IContainer _container;
 
     public UnitTest2()
     {
-      DriverFixture driverFixture = new(BrowserType.Edge);
+      ContainerBuilder builder = new();
+      builder.RegisterType<BrowserDriver>().As<IBrowserDriver>();
+      _container = builder.Build();
+
+      DriverFixture driverFixture = new(_container, BrowserType.Chrome);
       _driver = driverFixture.Driver;
       _driver.Navigate().GoToUrl(new Uri("https://localhost:7207/"));
     }

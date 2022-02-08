@@ -18,9 +18,7 @@ namespace SeleniumXUnitBasic
       builder.RegisterType<BrowserDriver>().As<IBrowserDriver>();
       _container = builder.Build();
       
-
-
-      DriverFixture driverFixture = new(BrowserType.Chrome);
+      DriverFixture driverFixture = new(_container, BrowserType.Chrome);
       _driver = driverFixture.Driver;
       _driver.Navigate().GoToUrl(new Uri("https://localhost:7207/"));
     }
