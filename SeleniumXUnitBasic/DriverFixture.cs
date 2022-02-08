@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using SeleniumXUnitBasic.Driver;
 using System;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
 
 namespace SeleniumXUnitBasic
 {
@@ -12,10 +10,20 @@ namespace SeleniumXUnitBasic
 
     public IWebDriver WebDriver { get { return _driver; } }
 
-    public DriverFixture()
+    public DriverFixture(BrowserType browserType)
     {
-      new DriverManager().SetUpDriver(new ChromeConfig());
-      _driver = new ChromeDriver();
+      _driver = GetWebDriver(browserType);
+    }
+
+    private IWebDriver GetWebDriver(BrowserType browserType)
+    {
+      BrowserDriver browserDriver = new();
+      return browserType switch
+      {
+        BrowserType.Chrome => browserDriver.GetChromeDriver(),
+        BrowserType.Edge => browserDriver.GetEdgeDriver(),
+        _ => browserDriver.GetChromeDriver()
+      };
     }
 
     public void Dispose()
