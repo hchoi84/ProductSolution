@@ -1,5 +1,4 @@
-﻿using Autofac;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SeleniumXUnitBasic.Driver;
 using System;
 
@@ -8,24 +7,23 @@ namespace SeleniumXUnitBasic
   public class DriverFixture : IDisposable
   {
     private readonly IWebDriver _driver;
-    private readonly IContainer _container;
+    private readonly IBrowserDriver _browserDriver;
 
     public IWebDriver Driver => _driver;
 
-    public DriverFixture(IContainer container, BrowserType browserType)
+    public DriverFixture(IBrowserDriver browserDriver, BrowserType browserType)
     {
-      _container = container;
+      _browserDriver = browserDriver;
       _driver = GetWebDriver(browserType);
     }
 
     private IWebDriver GetWebDriver(BrowserType browserType)
     {
-      IBrowserDriver browserDriver = _container.Resolve<IBrowserDriver>();
       return browserType switch
       {
-        BrowserType.Chrome => browserDriver.GetChromeDriver(),
-        BrowserType.Edge => browserDriver.GetEdgeDriver(),
-        _ => browserDriver.GetChromeDriver()
+        BrowserType.Chrome => _browserDriver.GetChromeDriver(),
+        BrowserType.Edge => _browserDriver.GetEdgeDriver(),
+        _ => _browserDriver.GetChromeDriver()
       };
     }
 
