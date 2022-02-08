@@ -1,21 +1,25 @@
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using SeleniumXUnitBasic.Driver;
 using System;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
 using Xunit;
 
 namespace SeleniumXUnitBasic
 {
-  public class UnitTest2 : IClassFixture<DriverFixture>
+  public class UnitTest2 : IDisposable
   {
     private readonly IWebDriver _driver;
 
-    public UnitTest2(DriverFixture driverFixture)
+    public UnitTest2()
     {
-      _driver = driverFixture.WebDriver;
+      DriverFixture driverFixture = new(BrowserType.Edge);
+      _driver = driverFixture.Driver;
       _driver.Navigate().GoToUrl(new Uri("https://localhost:7207/"));
+    }
+
+    public void Dispose()
+    {
+      _driver.Quit();
     }
 
     [Fact]

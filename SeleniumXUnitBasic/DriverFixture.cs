@@ -8,7 +8,7 @@ namespace SeleniumXUnitBasic
   {
     private readonly IWebDriver _driver;
 
-    public IWebDriver WebDriver { get { return _driver; } }
+    public IWebDriver Driver => _driver;
 
     public DriverFixture(BrowserType browserType)
     {
