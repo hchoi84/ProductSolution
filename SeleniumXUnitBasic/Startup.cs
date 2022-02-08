@@ -13,6 +13,7 @@ namespace SeleniumXUnitBasic
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddScoped<IBrowserDriver, BrowserDriver>();
+      services.AddScoped<IDriverFixture, DriverFixture>();
     }
   }
 }

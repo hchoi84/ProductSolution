@@ -1,6 +1,5 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SeleniumXUnitBasic.Driver;
 using System;
 using Xunit;
 
@@ -10,9 +9,8 @@ namespace SeleniumXUnitBasic
   {
     private readonly IWebDriver _driver;
 
-    public UnitTest2()
+    public UnitTest2(IDriverFixture driverFixture)
     {
-      DriverFixture driverFixture = new(BrowserType.Chrome);
       _driver = driverFixture.Driver;
       _driver.Navigate().GoToUrl(new Uri("https://localhost:7207/"));
     }
