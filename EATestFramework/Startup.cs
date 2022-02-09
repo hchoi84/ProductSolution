@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using SeleniumXUnitBasic.Driver;
+﻿using EATestFramework.Driver;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace SeleniumXUnitBasic
+namespace EATestFramework
 {
   public class Startup
   {

@@ -4,7 +4,7 @@ using OpenQA.Selenium.Edge;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 
-namespace SeleniumXUnitBasic.Driver
+namespace EATestFramework.Driver
 {
   public class BrowserDriver : IBrowserDriver
   {
