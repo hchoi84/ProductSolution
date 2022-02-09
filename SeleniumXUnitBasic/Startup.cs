@@ -1,10 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SeleniumXUnitBasic.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeleniumXUnitBasic
 {
@@ -12,6 +7,7 @@ namespace SeleniumXUnitBasic
   {
     public void ConfigureServices(IServiceCollection services)
     {
+      services.UserWebDriverInitializer(BrowserType.Edge);
       services.AddScoped<IBrowserDriver, BrowserDriver>();
       services.AddScoped<IDriverFixture, DriverFixture>();
     }

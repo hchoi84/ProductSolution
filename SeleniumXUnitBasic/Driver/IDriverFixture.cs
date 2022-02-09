@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace SeleniumXUnitBasic
+namespace SeleniumXUnitBasic.Driver
 {
   public interface IDriverFixture
   {
