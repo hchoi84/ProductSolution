@@ -41,6 +41,5 @@ namespace ProductAPI.Repository
       _context.Products.Remove(product);
       _context.SaveChanges();
     }
-
   }
 }

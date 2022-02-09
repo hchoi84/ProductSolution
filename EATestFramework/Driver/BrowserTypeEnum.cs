@@ -1,6 +1,6 @@
 ﻿namespace EATestFramework.Driver
 {
-  public enum BrowserType
+  public enum BrowserTypeEnum
   {
     Chrome,
     Edge

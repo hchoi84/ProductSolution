@@ -22,8 +22,8 @@ namespace EATestFramework.Driver
     {
       return _testSettings.BrowserType switch
       {
-        BrowserType.Chrome => _browserDriver.GetChromeDriver(),
-        BrowserType.Edge => _browserDriver.GetEdgeDriver(),
+        BrowserTypeEnum.Chrome => _browserDriver.GetChromeDriver(),
+        BrowserTypeEnum.Edge => _browserDriver.GetEdgeDriver(),
         _ => _browserDriver.GetChromeDriver()
       };
     }

@@ -5,7 +5,7 @@ namespace EATestFramework.Driver
 {
   public static class WebDriverInitializerExtension
   {
-    public static IServiceCollection UserWebDriverInitializer(this IServiceCollection services, BrowserType browserType)
+    public static IServiceCollection UserWebDriverInitializer(this IServiceCollection services, BrowserTypeEnum browserType)
     {
       services.AddSingleton(new TestSettings
       {
