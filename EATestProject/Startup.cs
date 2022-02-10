@@ -1,4 +1,5 @@
 ﻿using EATestFramework.Driver;
+using EATestFramework.Extensions;
 using EATestProject.Pages;
 using Microsoft.Extensions.DependencyInjection;
 
