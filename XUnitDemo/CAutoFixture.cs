@@ -1,7 +1,9 @@
 ﻿using AutoFixture;
+using AutoFixture.Kernel;
 using AutoFixture.Xunit2;
 using OpenQA.Selenium;
 using System.Net.Mail;
+using System.Reflection;
 using Xunit;
 using Xunit.Abstractions;
 using XUnitDemo.Extensions;
@@ -49,7 +51,11 @@ namespace XUnitDemo
       //using AutoFixture, we can create a random value for specified type.
       //var user = new Fixture().Create<RegisterUserModel>();
       //var user = new Fixture().Build<RegisterUserModel>().Without(x => x.Email).Create();
-      var user = new Fixture().Build<RegisterUserModel>().With(x => x.Email, "abc@ea.com").Create();
+      Fixture fixture = new();
+      //var user = fixture.Build<RegisterUserModel>().With(x => x.Email, $"{fixture.Create<string>()}@Sedgwick.com").Create();
+      fixture.Customizations.Add(new EmailBuilder());
+      var user = fixture.Create<RegisterUserModel>();
+      var user2 = fixture.Build<RegisterUserModel>().Create();
 
       driver.FindElement(By.LinkText("Register")).Click();
       driver.FindElement(By.Id("UserName")).SendKeys(user.Name);
@@ -76,6 +82,24 @@ namespace XUnitDemo
       driver.FindElement(By.Id("Email")).SendKeys(user.Email);
 
       _testOutputHelper.WriteLine("Test Completed");
+    }
+  }
+
+  public class EmailBuilder : ISpecimenBuilder
+  {
+    public object Create(object request, ISpecimenContext context)
+    {
+      PropertyInfo? propertyInfo = request as PropertyInfo;
+
+      if (propertyInfo != null)
+      {
+        if (propertyInfo.Name == "Email")
+        {
+          Fixture fixture = new();
+          return $"{fixture.Create<string>()}@Sedgwick.com";
+        }
+      }
+      return new NoSpecimen();
     }
   }
 }
