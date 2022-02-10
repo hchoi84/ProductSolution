@@ -16,6 +16,7 @@ namespace EATestFramework.Driver
       _testSettings = testSettings;
       _browserDriver = browserDriver;
       _driver = GetWebDriver();
+      _driver.Navigate().GoToUrl(_testSettings.ApplicationUrl);
     }
 
     private IWebDriver GetWebDriver()
