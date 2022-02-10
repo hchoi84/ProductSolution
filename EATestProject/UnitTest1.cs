@@ -1,14 +1,9 @@
-using AutoFixture;
-using AutoFixture.Kernel;
 using AutoFixture.Xunit2;
 using EATestFramework.Driver;
 using EATestProject.Models;
 using EATestProject.Pages;
 using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Net.Mail;
-using System.Reflection;
 using Xunit;
 
 namespace EATestProject
