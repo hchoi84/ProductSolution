@@ -1,9 +1,10 @@
 ﻿using EATestFramework.Settings;
 using OpenQA.Selenium;
+using System;
 
 namespace EATestFramework.Driver
 {
-  public class DriverFixture : IDriverFixture
+  public class DriverFixture : IDriverFixture, IDisposable
   {
     private readonly IWebDriver _driver;
     private readonly TestSettings _testSettings;
@@ -27,6 +28,11 @@ namespace EATestFramework.Driver
         BrowserTypeEnum.Edge => _browserDriver.GetEdgeDriver(),
         _ => _browserDriver.GetChromeDriver()
       };
+    }
+
+    public void Dispose()
+    {
+      _driver.Quit();
     }
   }
 }
