@@ -1,8 +1,14 @@
+using AutoFixture;
+using AutoFixture.Kernel;
+using AutoFixture.Xunit2;
 using EATestFramework.Driver;
 using EATestProject.Models;
 using EATestProject.Pages;
 using OpenQA.Selenium;
 using System;
+using System.Collections.Generic;
+using System.Net.Mail;
+using System.Reflection;
 using Xunit;
 
 namespace EATestProject
@@ -37,6 +43,14 @@ namespace EATestProject
         Price = 123,
         ProductType = ProductTypeEnum.PERIPHARALS
       });
+    }
+
+    //Autodo will auto generate the data for ProductModel
+    [Theory, AutoData]
+    public void Test2(ProductModel product)
+    {
+      _homePage.CreateProduct();
+      _createProductPage.EnterProductDetails(product);
     }
   }
 }
