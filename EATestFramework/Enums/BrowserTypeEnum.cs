@@ -1,4 +1,4 @@
-﻿namespace EATestFramework.Driver
+﻿namespace EATestFramework.Enums
 {
   public enum BrowserTypeEnum
   {

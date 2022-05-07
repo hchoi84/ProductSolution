@@ -1,4 +1,5 @@
-﻿using EATestFramework.Settings;
+﻿using EATestFramework.Enums;
+using EATestFramework.Settings;
 using OpenQA.Selenium;
 using System;
 

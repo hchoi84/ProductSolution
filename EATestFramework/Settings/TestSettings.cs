@@ -1,4 +1,4 @@
-﻿using EATestFramework.Driver;
+﻿using EATestFramework.Enums;
 using System;
 
 namespace EATestFramework.Settings

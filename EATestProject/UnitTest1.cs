@@ -31,7 +31,8 @@ namespace EATestProject
     //  });
     //}
 
-    //Autodo will auto generate the data for ProductModel
+    //Autodata will auto generate the data for ProductModel based on property type.
+    //Part of AutoFixture framework
     [Theory, AutoData]
     public void Test2(ProductModel product)
     {

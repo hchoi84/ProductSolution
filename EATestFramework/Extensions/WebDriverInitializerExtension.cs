@@ -1,5 +1,4 @@
-﻿using EATestFramework.Driver;
-using EATestFramework.Settings;
+﻿using EATestFramework.Settings;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
 using System.Reflection;
@@ -23,12 +22,14 @@ namespace EATestFramework.Extensions
       string? directory = Path.GetDirectoryName(location);
       string? configFile = File.ReadAllText(directory + "/appsettings.json");
 
+      #region for enum property
       JsonSerializerOptions jsonSerializerOptions = new()
       {
         PropertyNameCaseInsensitive = true
       };
 
       jsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+      #endregion
 
       TestSettings? testSettings = JsonSerializer.Deserialize<TestSettings>(configFile, jsonSerializerOptions);
       return testSettings ?? new TestSettings();
