@@ -35,10 +35,9 @@ namespace EATestFramework.Extensions
 
             colIndex++;
           }
-
-          rowIndex++;
         }
 
+        rowIndex++;
       }
 
       return tableDataCollections;
@@ -86,15 +85,15 @@ namespace EATestFramework.Extensions
           if (cell.ControlType == ControlTypeEnum.hyperlink)
           {
             elementToClick = (from c in cell.ElementCollections
-                                   where c.Text == controlToOperate.ToLower()
-                                   select c).SingleOrDefault();
+                              where c.Text == controlToOperate.ToLower()
+                              select c).SingleOrDefault();
           }
 
           if (cell.ControlType == ControlTypeEnum.input)
           {
             elementToClick = (from c in cell.ElementCollections
-                                   where c.GetAttribute("value") == controlToOperate.ToLower()
-                                   select c).SingleOrDefault();
+                              where c.GetAttribute("value") == controlToOperate.ToLower()
+                              select c).SingleOrDefault();
           }
 
           elementToClick?.Click();
