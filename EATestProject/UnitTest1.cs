@@ -52,7 +52,7 @@ namespace EATestProject
       ProductModel newProductDetail = _detailPage.GetProductDetails();
 
       //Part of FluentAssertion
-      newProductDetail.Should().Be(product);
+      newProductDetail.Should().BeEquivalentTo(product, o => o.Excluding(x => x.Id));
     }
 
     [Theory, AutoData]
