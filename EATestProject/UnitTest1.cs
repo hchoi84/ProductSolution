@@ -39,5 +39,13 @@ namespace EATestProject
       _homePage.CreateProduct();
       _createProductPage.EnterProductDetails(product);
     }
+
+    [Theory, AutoData]
+    public void Test3(ProductModel product)
+    {
+      _homePage.CreateProduct();
+      _createProductPage.EnterProductDetails(product);
+      _homePage.PerformClickOnSpecialValue("Monitor", "Details");
+    }
   }
 }
