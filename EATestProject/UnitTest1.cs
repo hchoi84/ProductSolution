@@ -9,10 +9,10 @@ namespace EATestProject
   public class UnitTest1
   {
     private readonly IHomePage _homePage;
-    private readonly ICreateProductPage _createProductPage;
+    private readonly IProductPage _createProductPage;
     private IWebDriver _driver;
 
-    public UnitTest1(IHomePage homePage, ICreateProductPage createProductPage)
+    public UnitTest1(IHomePage homePage, IProductPage createProductPage)
     {
       _homePage = homePage;
       _createProductPage = createProductPage;
@@ -42,6 +42,14 @@ namespace EATestProject
 
     [Theory, AutoData]
     public void Test3(ProductModel product)
+    {
+      _homePage.CreateProduct();
+      _createProductPage.EnterProductDetails(product);
+      _homePage.PerformClickOnSpecialValue(product.Name, "Details");
+    }
+
+    [Theory, AutoData]
+    public void Test4(ProductModel product)
     {
       _homePage.CreateProduct();
       _createProductPage.EnterProductDetails(product);

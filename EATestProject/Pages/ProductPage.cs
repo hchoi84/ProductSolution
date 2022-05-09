@@ -5,11 +5,11 @@ using OpenQA.Selenium;
 
 namespace EATestProject.Pages
 {
-  public class CreateProductPage : ICreateProductPage
+  public class ProductPage : IProductPage
   {
     private IWebDriver _driver;
 
-    public CreateProductPage(IDriverFixture driverFixture)
+    public ProductPage(IDriverFixture driverFixture)
     {
       _driver = driverFixture.Driver;
     }
@@ -29,5 +29,7 @@ namespace EATestProject.Pages
       DropdownProductType.SelectDropdownByValue(((int)productModel.ProductType).ToString());
       ButtonCreate.Submit();
     }
+
+
   }
 }
