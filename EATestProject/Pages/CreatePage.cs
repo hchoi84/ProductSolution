@@ -2,14 +2,15 @@
 using EATestFramework.Extensions;
 using EATestProject.Models;
 using OpenQA.Selenium;
+using System;
 
 namespace EATestProject.Pages
 {
-  public class ProductPage : IProductPage
+  public class CreatePage : ICreatePage
   {
     private IWebDriver _driver;
 
-    public ProductPage(IDriverFixture driverFixture)
+    public CreatePage(IDriverFixture driverFixture)
     {
       _driver = driverFixture.Driver;
     }
@@ -29,7 +30,5 @@ namespace EATestProject.Pages
       DropdownProductType.SelectDropdownByValue(((int)productModel.ProductType).ToString());
       ButtonCreate.Submit();
     }
-
-
   }
 }

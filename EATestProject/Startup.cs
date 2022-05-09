@@ -13,7 +13,8 @@ namespace EATestProject
       services.AddScoped<IBrowserDriver, BrowserDriver>();
       services.AddScoped<IDriverFixture, DriverFixture>();
       services.AddScoped<IHomePage, HomePage>();
-      services.AddScoped<IProductPage, ProductPage>();
+      services.AddScoped<ICreatePage, CreatePage>();
+      services.AddScoped<IDetailPage, DetailPage>();
     }
   }
 }
