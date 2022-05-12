@@ -1,7 +1,5 @@
 using EATestBDD.Models;
 using EATestBDD.Pages;
-using System;
-using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
 namespace EATestBDD.StepDefinitions
@@ -9,12 +7,18 @@ namespace EATestBDD.StepDefinitions
   [Binding]
   public class ProductStepDefinitions
   {
+    private readonly ScenarioContext _scenarioContext;
     private readonly IHomePage _homePage;
     private readonly ICreatePage _createPage;
     private readonly IDetailPage _detailPage;
 
-    public ProductStepDefinitions(IHomePage homePage, ICreatePage createPage, IDetailPage detailPage)
+    public ProductStepDefinitions(
+      ScenarioContext scenarioContext,
+      IHomePage homePage,
+      ICreatePage createPage,
+      IDetailPage detailPage)
     {
+      _scenarioContext = scenarioContext;
       _homePage = homePage;
       _createPage = createPage;
       _detailPage = detailPage;
@@ -36,19 +40,23 @@ namespace EATestBDD.StepDefinitions
     public void GivenICreateProductWithFollowingDetails(Table table)
     {
       ProductModel product = table.CreateInstance<ProductModel>();
+      _scenarioContext.Set(product);
       _createPage.EnterProductDetails(product);
     }
 
     [When(@"I click the details link of the newly created product")]
     public void WhenIClickTheDetailsLinkOfTheNewlyCreatedProduct()
     {
-      throw new PendingStepException();
+      ProductModel product = _scenarioContext.Get<ProductModel>();
+      _homePage.PerformClickOnSpecialValue(product.Name, "Details");
     }
 
     [Then(@"I see all the product details are created as expected")]
     public void ThenISeeAllTheProductDetailsAreCreatedAsExpected()
     {
-      throw new PendingStepException();
+      ProductModel product = _scenarioContext.Get<ProductModel>();
+      ProductModel? actualProduct = _detailPage.GetProductDetails();
+      actualProduct.Should().BeEquivalentTo(product, option => option.Excluding(x => x.Id));
     }
   }
 }
