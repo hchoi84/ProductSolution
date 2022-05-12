@@ -2,7 +2,8 @@
 {
   public interface IHomePage
   {
-    void CreateProduct();
+    void ClickCreate();
+    void ClickProduct();
     void PerformClickOnSpecialValue(string name, string operation);
   }
 }

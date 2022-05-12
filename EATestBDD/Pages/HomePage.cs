@@ -17,11 +17,8 @@ namespace EATestBDD.Pages
     IWebElement LinkCreate => _driver.FindElement(By.LinkText("Create"));
     IWebElement tableList => _driver.FindElement(By.CssSelector(".table"));
 
-    public void CreateProduct()
-    {
-      LinkProduct.Click();
-      LinkCreate.Click();
-    }
+    public void ClickProduct() => LinkProduct.Click();
+    public void ClickCreate() => LinkCreate.Click();
 
     public void PerformClickOnSpecialValue(string name, string operation)
     {
