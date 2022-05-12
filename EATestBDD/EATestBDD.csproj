@@ -23,4 +23,8 @@
     <Folder Include="Support\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EATestFramework\EATestFramework.csproj" />
+  </ItemGroup>
+
 </Project>
