@@ -2,19 +2,23 @@
 using EATestFramework.Extensions;
 using EATestBDD.Pages;
 using Microsoft.Extensions.DependencyInjection;
+using SolidToken.SpecFlow.DependencyInjection;
 
-namespace EATestBDD
+namespace EATestBDD;
+
+public static class Startup
 {
-  public class Startup
+  [ScenarioDependencies]
+  public static IServiceCollection CreateServices()
   {
-    public void ConfigureServices(IServiceCollection services)
-    {
-      services.UserWebDriverInitializer();
-      services.AddScoped<IBrowserDriver, BrowserDriver>();
-      services.AddScoped<IDriverFixture, DriverFixture>();
-      services.AddScoped<IHomePage, HomePage>();
-      services.AddScoped<ICreatePage, CreatePage>();
-      services.AddScoped<IDetailPage, DetailPage>();
-    }
+    ServiceCollection services = new();
+    services.UserWebDriverInitializer();
+    services.AddScoped<IBrowserDriver, BrowserDriver>();
+    services.AddScoped<IDriverFixture, DriverFixture>();
+    services.AddScoped<IHomePage, HomePage>();
+    services.AddScoped<ICreatePage, CreatePage>();
+    services.AddScoped<IDetailPage, DetailPage>();
+
+    return services;
   }
 }
