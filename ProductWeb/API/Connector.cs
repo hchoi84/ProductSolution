@@ -6,7 +6,7 @@ namespace ProductWeb.API
 {
   public class Connector : IConnector
   {
-    private const string _url = @"https://localhost:7076/swagger/index.html";
+    private const string _url = @"http://eaapi:8001";
     private HttpClient _client;
 
     public HttpClient Client

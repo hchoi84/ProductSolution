@@ -1,0 +1,44 @@
+version: '3.4'
+services:
+  ea_api:
+    image: ea_api
+    container_name: eaapi
+    build:
+      context: .
+      dockerfile: ProductAPI/Dockerfile
+    restart: on-failure      
+    ports:
+      - 5000:8001
+    depends_on:
+      - db
+    networks:
+      - ea_network
+
+  ea_webapp:
+    image: ea_webapp
+    container_name: eawebapp
+    build:
+      context: .
+      dockerfile: ProductWeb/Dockerfile
+    restart: on-failure      
+    ports:
+      - 5001:8000
+    depends_on: 
+      - ea_api
+    networks: 
+      - ea_network
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "Password%1#29"
+      ACCEPT_EULA: "Y"
+    container_name: sqlserver
+    hostname: sqlserver
+    ports:
+    - "1433:1433"
+    networks:
+      - ea_network
+
+networks: 
+   ea_network:
