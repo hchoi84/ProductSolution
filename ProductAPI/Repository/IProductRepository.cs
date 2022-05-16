@@ -4,10 +4,10 @@ namespace ProductAPI.Repository
 {
   public interface IProductRepository
     {
-        Product AddProduct(Product product);
+        ProductModel AddProduct(ProductModel product);
         void DeleteProduct(int id);
-        List<Product> GetAllProducts();
-        Product GetProductById(int id);
-        Product UpdateProduct(Product product);
+        List<ProductModel> GetAllProducts();
+        ProductModel GetProductById(int id);
+        ProductModel UpdateProduct(ProductModel product);
     }
 }

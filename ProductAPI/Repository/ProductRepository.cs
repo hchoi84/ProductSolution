@@ -11,24 +11,24 @@ namespace ProductAPI.Repository
       _context = context;
     }
 
-    public List<Product> GetAllProducts()
+    public List<ProductModel> GetAllProducts()
     {
       return _context.Products.ToList();
     }
 
-    public Product GetProductById(int id)
+    public ProductModel GetProductById(int id)
     {
       return _context.Products.FirstOrDefault(p => p.Id == id);
     }
 
-    public Product AddProduct(Product product)
+    public ProductModel AddProduct(ProductModel product)
     {
       _context.Products.Add(product);
       _context.SaveChanges();
       return product;
     }
 
-    public Product UpdateProduct(Product product)
+    public ProductModel UpdateProduct(ProductModel product)
     {
       _context.Products.Update(product);
       _context.SaveChanges();

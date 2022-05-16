@@ -1,5 +1,7 @@
 using EATestBDD.Models;
 using EATestBDD.Pages;
+using ProductAPI.Data;
+using ProductAPI.Repository;
 using TechTalk.SpecFlow.Assist;
 
 namespace EATestBDD.StepDefinitions
@@ -11,17 +13,20 @@ namespace EATestBDD.StepDefinitions
     private readonly IHomePage _homePage;
     private readonly ICreatePage _createPage;
     private readonly IDetailPage _detailPage;
+    private readonly IProductRepository _productRepository;
 
     public ProductStepDefinitions(
       ScenarioContext scenarioContext,
       IHomePage homePage,
       ICreatePage createPage,
-      IDetailPage detailPage)
+      IDetailPage detailPage,
+      IProductRepository productRepository)
     {
       _scenarioContext = scenarioContext;
       _homePage = homePage;
       _createPage = createPage;
       _detailPage = detailPage;
+      _productRepository = productRepository;
     }
 
     [Given(@"I click the Product menu")]
@@ -39,7 +44,7 @@ namespace EATestBDD.StepDefinitions
     [Given(@"I create product with following details")]
     public void GivenICreateProductWithFollowingDetails(Table table)
     {
-      ProductModel product = table.CreateInstance<ProductModel>();
+      Models.ProductModel product = table.CreateInstance<Models.ProductModel>();
       _scenarioContext.Set(product);
       _createPage.EnterProductDetails(product);
     }
@@ -47,15 +52,15 @@ namespace EATestBDD.StepDefinitions
     [When(@"I click the details link of the newly created product")]
     public void WhenIClickTheDetailsLinkOfTheNewlyCreatedProduct()
     {
-      ProductModel product = _scenarioContext.Get<ProductModel>();
+      Models.ProductModel product = _scenarioContext.Get<Models.ProductModel>();
       _homePage.PerformClickOnSpecialValue(product.Name, "Details");
     }
 
     [Then(@"I see all the product details are created as expected")]
     public void ThenISeeAllTheProductDetailsAreCreatedAsExpected()
     {
-      ProductModel product = _scenarioContext.Get<ProductModel>();
-      ProductModel? actualProduct = _detailPage.GetProductDetails();
+      Models.ProductModel product = _scenarioContext.Get<Models.ProductModel>();
+      Models.ProductModel? actualProduct = _detailPage.GetProductDetails();
       actualProduct.Should().BeEquivalentTo(product, option => option.Excluding(x => x.Id));
     }
   }

@@ -1,4 +1,4 @@
-﻿public enum ProductType
+﻿public enum ProductTypeEnum
 {
   CPU,
   MONITOR,

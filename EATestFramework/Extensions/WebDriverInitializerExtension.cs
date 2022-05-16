@@ -9,9 +9,9 @@ namespace EATestFramework.Extensions
 {
   public static class WebDriverInitializerExtension
   {
-    public static IServiceCollection UserWebDriverInitializer(this IServiceCollection services)
+    public static IServiceCollection UseWebDriverInitializer(this IServiceCollection services)
     {
-      services.AddSingleton(ReadConfig);
+      services.AddSingleton(ReadConfig());
 
       return services;
     }

@@ -6,6 +6,7 @@ using SolidToken.SpecFlow.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using ProductAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using ProductAPI.Repository;
 
 namespace EATestBDD;
 
@@ -15,7 +16,6 @@ public static class Startup
   public static IServiceCollection CreateServices()
   {
     ServiceCollection services = new();
-    services.UserWebDriverInitializer();
 
     string projectPath = AppDomain.CurrentDomain.BaseDirectory.Split(new String[] { @"bin\" }, StringSplitOptions.None)[0];
     IConfigurationRoot configuration = new ConfigurationBuilder()
@@ -23,8 +23,13 @@ public static class Startup
       .AddJsonFile("appsettings.json")
       .Build();
     string connectionString = configuration.GetConnectionString("DefaultConnection");
-    services.AddDbContext<ProductDbContext>(option => option.UseSqlServer(connectionString));
+    services.AddDbContext<ProductDbContext>(option => option.UseSqlServer(connectionString, builder =>
+    {
+      builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+    }));
 
+    services.UseWebDriverInitializer();
+    services.AddTransient<IProductRepository, ProductRepository>();
     services.AddScoped<IBrowserDriver, BrowserDriver>();
     services.AddScoped<IDriverFixture, DriverFixture>();
     services.AddScoped<IHomePage, HomePage>();

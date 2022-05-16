@@ -26,7 +26,7 @@ namespace EATestBDD.Pages
         Name = TextInputName.Text,
         Description = TextInputDescription.Text,
         Price = int.Parse(TextInputPrice.Text),
-        ProductType = (ProductTypeEnum)Enum.Parse(typeof(ProductTypeEnum), DropdownProductType.GetAttribute("innerText").ToString())
+        ProductType = (Models.ProductTypeEnum)Enum.Parse(typeof(Models.ProductTypeEnum), DropdownProductType.GetAttribute("innerText").ToString())
       };
     }
   }

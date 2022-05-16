@@ -2,7 +2,7 @@
 
 namespace ProductAPI.Data
 {
-  public class Product
+  public class ProductModel
   {
     [Key]
     public int Id { get; set; }
@@ -10,6 +10,6 @@ namespace ProductAPI.Data
     public string Description { get; set; } = String.Empty;
     public int Price { get; set; }
 
-    public ProductType ProductType { get; set; }
+    public ProductTypeEnum ProductType { get; set; }
   }
 }

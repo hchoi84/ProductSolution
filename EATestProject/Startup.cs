@@ -9,7 +9,7 @@ namespace EATestProject
   {
     public void ConfigureServices(IServiceCollection services)
     {
-      services.UserWebDriverInitializer();
+      services.UseWebDriverInitializer();
       services.AddScoped<IBrowserDriver, BrowserDriver>();
       services.AddScoped<IDriverFixture, DriverFixture>();
       services.AddScoped<IHomePage, HomePage>();

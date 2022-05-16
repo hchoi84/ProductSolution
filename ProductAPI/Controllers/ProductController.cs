@@ -17,25 +17,25 @@ namespace ProductAPI.Controllers
     }
 
     [HttpGet]
-    public ActionResult<List<Product>> GetAll()
+    public ActionResult<List<ProductModel>> GetAll()
     {
       return _productRepository.GetAllProducts();
     }
 
     [HttpGet(_id)]
-    public Product GetById(int id)
+    public ProductModel GetById(int id)
     {
       return _productRepository.GetProductById(id);
     }
 
     [HttpPost]
-    public Product Create(Product product)
+    public ProductModel Create(ProductModel product)
     {
       return _productRepository.AddProduct(product);
     }
 
     [HttpPut]
-    public Product Update(Product product)
+    public ProductModel Update(ProductModel product)
     {
       return _productRepository.UpdateProduct(product);
     }
