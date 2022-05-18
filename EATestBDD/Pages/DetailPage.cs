@@ -1,7 +1,6 @@
-﻿using EATestBDD.Models;
-using EATestFramework.Driver;
+﻿using EATestFramework.Driver;
 using OpenQA.Selenium;
-using System;
+using ProductAPI.Data;
 
 namespace EATestBDD.Pages
 {
@@ -26,7 +25,7 @@ namespace EATestBDD.Pages
         Name = TextInputName.Text,
         Description = TextInputDescription.Text,
         Price = int.Parse(TextInputPrice.Text),
-        ProductType = (Models.ProductTypeEnum)Enum.Parse(typeof(Models.ProductTypeEnum), DropdownProductType.GetAttribute("innerText").ToString())
+        ProductType = (ProductTypeEnum)Enum.Parse(typeof(ProductTypeEnum), DropdownProductType.GetAttribute("innerText").ToString())
       };
     }
   }

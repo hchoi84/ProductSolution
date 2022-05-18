@@ -28,7 +28,7 @@ namespace EATestFramework.Extensions
             {
               RowNumber = rowIndex,
               ColumnName = columns[colIndex].Text != "" ?
-              columns[colIndex].Text : colValue.ToString(),
+                           columns[colIndex].Text : colIndex.ToString(),
               ColumnValue = colValue.Text,
               ColumnSpecialValue = GetControl(colValue)
             });
@@ -74,9 +74,9 @@ namespace EATestFramework.Extensions
 
       foreach (int rowNumner in GetDynamicRowNumber(table, refColumnName, refColumnValue))
       {
-        var cell = (from e in table
-                    where e.ColumnName == targetColumnIndex && e.RowNumber == rowNumner
-                    select e.ColumnSpecialValue).SingleOrDefault();
+        ColumnSpecialValue? cell = (from e in table
+                                    where e.ColumnName == targetColumnIndex && e.RowNumber == rowNumner
+                                    select e.ColumnSpecialValue).SingleOrDefault();
 
         if (controlToOperate != null && cell != null)
         {
@@ -85,7 +85,7 @@ namespace EATestFramework.Extensions
           if (cell.ControlType == ControlTypeEnum.hyperlink)
           {
             elementToClick = (from c in cell.ElementCollections
-                              where c.Text == controlToOperate.ToLower()
+                              where c.Text.ToLower() == controlToOperate.ToLower()
                               select c).SingleOrDefault();
           }
 
@@ -107,11 +107,13 @@ namespace EATestFramework.Extensions
 
     private static IEnumerable GetDynamicRowNumber(List<TableDataCollection> tableCollection, string columnName, string columnValue)
     {
-      foreach (var table in tableCollection)
-      {
-        if (table.ColumnName == columnName && table.ColumnValue == columnValue)
-          yield return table.RowNumber;
-      }
+      //foreach (var table in tableCollection)
+      //{
+      //  if (table.ColumnName == columnName && table.ColumnValue == columnValue)
+      //    yield return table.RowNumber;
+      //}
+
+      yield return tableCollection.FirstOrDefault(x => x.ColumnName == columnName && x.ColumnValue == columnValue).RowNumber;
     }
   }
 

@@ -1,8 +1,7 @@
-﻿using EATestBDD.Models;
-using EATestFramework.Driver;
+﻿using EATestFramework.Driver;
 using EATestFramework.Extensions;
 using OpenQA.Selenium;
-using System;
+using ProductAPI.Data;
 
 namespace EATestBDD.Pages
 {

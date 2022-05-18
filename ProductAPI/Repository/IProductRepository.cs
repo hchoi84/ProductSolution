@@ -6,7 +6,8 @@ namespace ProductAPI.Repository
     {
         ProductModel AddProduct(ProductModel product);
         void DeleteProduct(int id);
-        List<ProductModel> GetAllProducts();
+    void DeleteProduct(string productName);
+    List<ProductModel> GetAllProducts();
         ProductModel GetProductById(int id);
         ProductModel UpdateProduct(ProductModel product);
     }

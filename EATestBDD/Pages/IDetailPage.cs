@@ -1,4 +1,4 @@
-﻿using EATestBDD.Models;
+﻿using ProductAPI.Data;
 
 namespace EATestBDD.Pages
 {
