@@ -35,6 +35,7 @@ public static class Startup
     services.AddScoped<IHomePage, HomePage>();
     services.AddScoped<ICreatePage, CreatePage>();
     services.AddScoped<IDetailPage, DetailPage>();
+    services.AddScoped<IEditPage, EditPage>();
 
     return services;
   }

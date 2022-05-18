@@ -12,6 +12,7 @@ public class ProductStepDefinitions
   private readonly IHomePage _homePage;
   private readonly ICreatePage _createPage;
   private readonly IDetailPage _detailPage;
+  private readonly IEditPage _editPage;
   private readonly IProductRepository _productRepository;
 
   public ProductStepDefinitions(
@@ -19,12 +20,14 @@ public class ProductStepDefinitions
     IHomePage homePage,
     ICreatePage createPage,
     IDetailPage detailPage,
+    IEditPage editPage,
     IProductRepository productRepository)
   {
     _scenarioContext = scenarioContext;
     _homePage = homePage;
     _createPage = createPage;
     _detailPage = detailPage;
+    _editPage = editPage;
     _productRepository = productRepository;
   }
 
@@ -52,6 +55,8 @@ public class ProductStepDefinitions
   public void WhenIEditTheProductDetailsWithFollowing(Table table)
   {
     ProductModel product = table.CreateInstance<ProductModel>();
+    _scenarioContext.Set(product);
+    _editPage.EditProductDetails(product);
   }
 
 

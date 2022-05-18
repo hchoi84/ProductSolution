@@ -22,6 +22,7 @@ public class ReusableStepDefinitions
   public void GivenIEnsureTheFollowingProductIsCreated(Table table)
   {
     ProductModel product = table.CreateInstance<ProductModel>();
+    _scenarioContext.Set(product);
     _productRepository.AddProduct(product);
   }
 
