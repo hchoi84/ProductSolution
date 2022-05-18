@@ -45,8 +45,11 @@ namespace ProductAPI.Repository
     public void DeleteProduct(string productName)
     {
       var product = _context.Products.FirstOrDefault(p => p.Name == productName);
-      _context.Products.Remove(product);
-      _context.SaveChanges();
+      if (product != null)
+      {
+        _context.Products.Remove(product);
+        _context.SaveChanges();
+      }
     }
   }
 }

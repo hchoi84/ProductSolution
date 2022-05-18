@@ -32,4 +32,16 @@ public class ReusableStepDefinitions
   {
     _productRepository.DeleteProduct(productName);
   }
+
+  [Given(@"I cleanup following data")]
+  public void GivenICleanupFollowingData(Table table)
+  {
+    IEnumerable<ProductModel> products = table.CreateSet<ProductModel>();
+
+    foreach (var product in products)
+    {
+      _productRepository.DeleteProduct(product.Name);
+    }
+  }
+
 }

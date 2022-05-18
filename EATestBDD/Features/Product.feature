@@ -1,6 +1,12 @@
 ﻿Feature: Product
 Test the product page functinalities
 
+Background:
+  Given I cleanup following data
+    | Name       | Description        | Price | ProductType |
+    | Monitor    | HD monitor         | 400   | MONITOR     |
+    | Headphones | Noise cancellation | 300   | PERIPHARALS |
+
 @mytag
 Scenario: Create product and verify the details
   Given I click the Product menu
